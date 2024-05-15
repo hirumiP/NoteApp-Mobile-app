@@ -33,14 +33,14 @@ class NotesAdapter(private var notes: List<Note>, context:Context): RecyclerView
         holder.titleTextView.text = note.title
         holder.contentTextView.text = note.content
 
-        holder.updateButton.setOnClickListener{
+        holder.updateButton.setOnClickListener {
             val intent = Intent(holder.itemView.context, UpdateNoteActivity::class.java).apply {
                 putExtra("note_id", note.id)
             }
             holder.itemView.context.startActivity(intent)
         }
 
-        holder.deleteButton.setOnClickListener(){
+        holder.deleteButton.setOnClickListener {
             db.deleteNote(note.id)
             refreshData(db.getAllNotes())
             Toast.makeText(holder.itemView.context, "Note deleted", Toast.LENGTH_SHORT).show()
